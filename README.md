@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://primitives.ru/logo.png" alt="Primitives logo">
+  <img src="http://primitives.ru/logo.png" alt="Primitives logo">
 </p>
 <h1 align="center">DogeAI</h1>
 
