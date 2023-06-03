@@ -7,8 +7,6 @@
 #include <math.h>
 #include <time.h>
 
-#define int int
-#define double double
 #define Tensor1D double*
 #define Tensor2D double**
 
@@ -225,6 +223,46 @@ int loadWeights(weightsTensor matrix, const char* infilename) {
 		for (j = 0; j < matrix._columns; j++) {
 			fscanf(infile, "%lf ", &read);
 			matrix._matrix[i][j] = read;
+		}
+	}
+	fclose(infile);
+	return 1;
+}
+
+int saveWeightsSinglePrecision(weightsTensor matrix, const char* outfilename) {
+	FILE* outfile;
+
+	outfile = fopen(outfilename, "wb");
+	if (outfile == NULL) {
+		perror("Save error");
+		return 0;
+	}
+
+	for (int i = 0; i < matrix._rows; i++) {
+		for (int j = 0; j < matrix._columns; j++) {
+			float temp = (float)matrix._matrix[i][j];
+			fwrite(&temp, sizeof(float), 1, outfile);
+		}
+	}
+	fclose(outfile);
+
+	return 1;
+}
+
+int loadWeightsSinglePrecision(weightsTensor matrix, const char* infilename) {
+	FILE* infile;
+
+	infile = fopen(infilename, "rb");
+	if (infile == NULL) {
+		perror("Load error");
+		return 0;
+	}
+	
+	float temp;
+	for (int i = 0; i < matrix._rows; i++) {
+		for (int j = 0; j < matrix._columns; j++) {
+			fread(&temp, sizeof(float), 1, infile);
+			matrix._matrix[i][j] = (double)temp;
 		}
 	}
 	fclose(infile);
