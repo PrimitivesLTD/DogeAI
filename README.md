@@ -22,3 +22,4 @@ DogeAI is an AI model of a dog that learns and adapts in real-time through visua
 
 - Optimization: We're constantly working to improve the performance of DogeAI
 - Cross-platform build: We aim to make DogeAI available across multiple platforms, including STM32
+- Efficient weights export
